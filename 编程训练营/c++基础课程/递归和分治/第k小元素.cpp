@@ -10,12 +10,8 @@
 #include<iostream>
 #include<cmath>
 #include<ctime>
-#include<cstdlib>
 
 using namespace std;
-
-const int N = 60000000;
-int A[N] = {0};
 
 int Partition(int A[], int low, int high);
 int SelectK(int A[], int low, int high, int k);
@@ -23,33 +19,30 @@ void Swap(int &a, int &b);
 
 int main() 
 {
+ 	const int N = 200;
+ 	int A[N] = {0};
+ 	
  	for (int i=0; i<N; i++)
  	{
 	 	A[i] = rand() % 1000;
     }
-    /* 
+    
     for (int i=0; i<N; i++)
  	{
 	 	cout << A[i] << "  ";
     }
     cout << endl;
-    */
-    time_t startTime;
-	time_t endTime;
-	
-	time(&startTime); 
-    int k = 5555555;
+    
+    int k = 5;
     cout << SelectK(A, 0, N-1, k) << endl;
-    time(&endTime);
-	cout << difftime(endTime, startTime) << endl;
-    /*
+    
     for (int i=0; i<N; i++)
  	{
 	 	cout << A[i] << "  ";
     }
     cout << endl;
- 	*/
  	
+    system("pause");
     return 0;
 }
 

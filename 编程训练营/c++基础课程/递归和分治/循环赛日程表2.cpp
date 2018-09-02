@@ -29,58 +29,66 @@ using namespace std;
 const int N = 40;
 int A[N][N];
 
-void CopyTable(int x1, int y1, int x2, int y2, int n);
-void Table(int x, int y, int n);//用递归分治法安排循环赛日程表 
-void Table_2(int x, int y, int n);//用迭代法安排循环赛日程表 
+void Table(int n);//用迭代法安排循环赛日程表 
+void Table_2(int n);//用迭代法安排循环赛日程表 
 void PrintTable(int x, int y, int n);
 
 int main() 
 {
  	int n = 8;
- 	for (int i=0; i<n; i++) //初始化第1列，以便复制到其他表格 
- 		A[i][0] = i + 1;
- 		
-//	Table(0, 0, n);//用分治法安排循环赛日程表 
-	Table_2(0, 0, n);//用迭代法安排循环赛日程表 	
+ 	
+//	Table(n);//用迭代法安排循环赛日程表 
+	Table_2(n);//用迭代法安排循环赛日程表 	
  	PrintTable(0, 0, n);//输出左上角坐标为(x1,y1)，大小为n的表格
  	
     return 0;
 }
 
-void Table(int x, int y, int n)//用递归分治法安排循环赛日程表 
+void Table(int n)//用迭代法安排循环赛日程表 
 {
-	n /= 2;
-	if (n > 1)
-	{
-		Table(x, y, n); //递归处理左上角表格
-		Table(x+n, y, n); //递归处理左下角表格
-		
-	}
-	CopyTable(x, y, x+n, y+n, n); //把左上角表格复制到右下角
-	CopyTable(x+n, y, x, y+n, n); //把左下角表格复制到右上角
-}
-
-void Table_2(int x, int y, int n)//用迭代法安排循环赛日程表 
-{
+	A[0][0] = 1; //先确定左上角元素，其他位置元素由它来生成 
 	for (int t=1; t<n; t*=2)
 	{
-	 	for (int x=0; x<n; x+=t*2)//从上往下依次处理每一块大小为t*2的表格 
-	 	{
-		 	CopyTable(x, y, x+t, y+t, t); //把左上角表格复制到右下角
-			CopyTable(x+t, y, x, y+t, t); //把左下角表格复制到右上角
-		}
+		for (int i=0; i<t; i++)//利用左上方阵构造右上方阵
+		{
+			for (int j=0; j<t; j++)
+			{
+				A[i][j+t] = A[i][j] + t; //利用元素之间的差值来生成新元素 
+			}
+		} 
+		
+		for (int i=0; i<t; i++)//对称交换构造下半部分方阵
+		{
+			for (int j=0; j<t; j++)
+			{
+				A[i+t][j] = A[i][j+t]; //左下方阵等于右上方阵 
+				A[i+t][j+t] = A[i][j]; //右下方阵等于左上方阵 
+			}
+		} 
 	}
 }
 
-//把左上角坐标为(x1,y1)，大小为n的表格复制到左上角坐标为(x2,y2)的表格上 
-void CopyTable(int x1, int y1, int x2, int y2, int n)
+void Table_2(int n)//用迭代法安排循环赛日程表 
 {
-	for (int i=0; i<n; i++)
+	A[0][0] = 1; //先确定左上角元素，其他位置元素由它来生成 
+	for (int t=1; t<n; t*=2)
 	{
-		for (int j=0; j<n; j++)
+		for (int i=0; i<t; i++)//利用左上方阵构造左下方方阵
 		{
-			A[x2+i][y2+j] = A[x1+i][y1+j];
-		}
+			for (int j=0; j<t; j++)
+			{
+				A[i+t][j] = A[i][j] + t; //利用元素之间的差值来生成新元素 
+			}
+		} 
+		
+		for (int i=0; i<t; i++)//对称交换构造右半部分方阵
+		{
+			for (int j=0; j<t; j++)
+			{
+				A[i][j+t] = A[i+t][j]; //右上方阵等于左下方阵 
+				A[i+t][j+t] = A[i][j]; //右下方阵等于左上方阵 
+			}
+		} 
 	}
 }
 
