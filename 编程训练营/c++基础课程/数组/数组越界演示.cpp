@@ -1,3 +1,10 @@
+/*
+	Name: 数组越界演示 
+	Copyright: 
+	Author: 
+	Date: 04\09\18 15:12
+	Description: 
+*/
 #include<iostream>
 #include<string>
 
@@ -30,15 +37,15 @@ int main()
 	
 	//数组越界 
 	a[-1] = 2345;
-    b[5] = 999;
+    b[5] = 999; 
     cout << "a :" << endl;
-	for (int i=0; i<MAX; i++)
+	for (int i=-1; i<=MAX; i++)
 	{
 		cout << a[i] << ": " << &a[i] << " ";
 	}
 	cout << endl;
 	cout << "b :" << endl;
-	for (int i=0; i<MAX; i++)
+	for (int i=-1; i<=MAX; i++)//注意，数组b和a的元素的地址重合了 
 	{
 		cout << b[i] << ": " << &b[i] << " ";
 	}
