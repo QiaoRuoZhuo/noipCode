@@ -1,12 +1,12 @@
 /*
-	Name: ½µÐòÐòÁÐ 
+	Name: é™åºåºåˆ— 
 	Copyright: 
 	Author: 
 	Date: 04\09\18 10:01
-	Description: ÔÚÒ»¸öÊý¾ÝÐòÁÐÖÐ£¬Èç¹û³öÏÖÁ¬Ðø½µÐòµÄ¼¸¸öÊý£¬³ÆÎªÒ»¸ö½µÐòÐòÁÐ£¬¸Ã½µÐòÐòÁÐÖÐÊýµÄ¸öÊý³ÆÎªÐòÁÐ³¤¶È¡£
-	ÓÃËæ»úº¯Êý²úÉún¸öÊý¾ÝµÄÐòÁÐ£¬
-	ÒªÇó1£º²éÕÒ³öÆäÖÐ×î³¤½µÐòÐòÁÐµÄ³¤¶È
-	ÒªÇó2£º²¢Êä³ö¸Ã×î³¤½µÐòÐòÁÐ¡£ 
+	Description: åœ¨ä¸€ä¸ªæ•°æ®åºåˆ—ä¸­ï¼Œå¦‚æžœå‡ºçŽ°è¿žç»­é™åºçš„å‡ ä¸ªæ•°ï¼Œç§°ä¸ºä¸€ä¸ªé™åºåºåˆ—ï¼Œè¯¥é™åºåºåˆ—ä¸­æ•°çš„ä¸ªæ•°ç§°ä¸ºåºåˆ—é•¿åº¦ã€‚
+	ç”¨éšæœºå‡½æ•°äº§ç”Ÿnä¸ªæ•°æ®çš„åºåˆ—ï¼Œ
+	è¦æ±‚1ï¼šæŸ¥æ‰¾å‡ºå…¶ä¸­æœ€é•¿é™åºåºåˆ—çš„é•¿åº¦
+	è¦æ±‚2ï¼šå¹¶è¾“å‡ºè¯¥æœ€é•¿é™åºåºåˆ—ã€‚ 
 */
 #include<iostream>
 #include<ctime>
@@ -18,10 +18,11 @@ using namespace std;
 const int M = 20;
 int A[M];
 
-int Fun(int n);//·µ»Ø×î³¤½µÐòÐòÁÐµÄ³¤¶È
-void Fun_2(int n);//Êä³ö¸Ã×î³¤½µÐòÐòÁÐ
-int Fun_3(int n);//·µ»Ø×î³¤½µÐòÐòÁÐµÄ³¤¶È
-void Fun_4(int n);//Êä³ö¸Ã×î³¤½µÐòÐòÁÐ
+int Fun(int n);//è¿”å›žæœ€é•¿é™åºåºåˆ—çš„é•¿åº¦
+void Fun_2(int n);//è¾“å‡ºè¯¥æœ€é•¿é™åºåºåˆ—
+int Fun_3(int n);//è¿”å›žæœ€é•¿é™åºåºåˆ—çš„é•¿åº¦
+void Fun_4(int n);//è¾“å‡ºè¯¥æœ€é•¿é™åºåºåˆ—
+int Fun_5(int n);//è¿”å›žæœ€é•¿é™åºåºåˆ—çš„é•¿åº¦
 
 int main() 
 {
@@ -40,7 +41,7 @@ int main()
 	return 0;	
 } 
 
-int Fun(int n)//·µ»Ø×î³¤½µÐòÐòÁÐµÄ³¤¶È
+int Fun(int n)//è¿”å›žæœ€é•¿é™åºåºåˆ—çš„é•¿åº¦
 {
     int m = 0, t = 1;
 	
@@ -57,10 +58,10 @@ int Fun(int n)//·µ»Ø×î³¤½µÐòÐòÁÐµÄ³¤¶È
 			t = 1;
 		}
     }
-    return (t > m) ? t : m; //×î³¤½µÐòÐòÁÐ°üº¬×îºóÒ»¸öÔªËØ  
+    return (t > m) ? t : m; //æœ€é•¿é™åºåºåˆ—åŒ…å«æœ€åŽä¸€ä¸ªå…ƒç´   
 }
 
-void Fun_2(int n)//Êä³ö¸Ã×î³¤½µÐòÐòÁÐ
+void Fun_2(int n)//è¾“å‡ºè¯¥æœ€é•¿é™åºåºåˆ—
 {
     int left = 0, mleft = 0, mright = 0;
     int m = 0, t = 1;
@@ -83,7 +84,7 @@ void Fun_2(int n)//Êä³ö¸Ã×î³¤½µÐòÐòÁÐ
 			left = i;
 		}
     }
-    if (t > m) //×î³¤½µÐòÐòÁÐ°üº¬×îºóÒ»¸öÔªËØ 
+    if (t > m) //æœ€é•¿é™åºåºåˆ—åŒ…å«æœ€åŽä¸€ä¸ªå…ƒç´  
 	{
 	    m = t;
 	    mleft = left;
@@ -95,7 +96,7 @@ void Fun_2(int n)//Êä³ö¸Ã×î³¤½µÐòÐòÁÐ
 	cout << endl;
 }
 
-int Fun_3(int n)//·µ»Ø×î³¤½µÐòÐòÁÐµÄ³¤¶È
+int Fun_3(int n)//è¿”å›žæœ€é•¿é™åºåºåˆ—çš„é•¿åº¦
 {
     int m = 0, t = 1, i = 1;
 	
@@ -115,7 +116,7 @@ int Fun_3(int n)//·µ»Ø×î³¤½µÐòÐòÁÐµÄ³¤¶È
     return m;  
 }
 
-void Fun_4(int n)//Êä³ö¸Ã×î³¤½µÐòÐòÁÐ
+void Fun_4(int n)//è¾“å‡ºè¯¥æœ€é•¿é™åºåºåˆ—
 {
     int left = 0, mleft = 0, mright = 0;
     int m = 0, t = 1, i = 1;
@@ -140,4 +141,23 @@ void Fun_4(int n)//Êä³ö¸Ã×î³¤½µÐòÐòÁÐ
     for (i=mleft; i<=mright; i++)
 		cout << A[i] << " ";
 	cout << endl;
+}
+
+int Fun_5(int n)//è¿”å›žæœ€é•¿é™åºåºåˆ—çš„é•¿åº¦
+{
+    int m = 0, t = 1;
+	
+    for (int i=1; i<n; i++)
+    { 
+        while (i < n && A[i] < A[i-1])
+        {
+        	t++;
+        	i++;
+		}
+		if (t > m)
+			m = t;
+		t = 1;
+    }
+    
+    return m;  
 }
