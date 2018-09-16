@@ -1,12 +1,12 @@
 /*
-	Name: ���������㷨 
+	Name: 荷兰国旗算法 
 	Copyright: 
 	Author: 
 	Date: 06-10-16 16:16
 	Description: 
-	һ��ľͰ��ֱ�װ�к������ɫС�򣨷ֱ���0,1,2��ʾ������������е�'0'������ǰ�棬���е�'1'���м䣬���е�'2'�����
-Ҫ��Ҫ��ռ临�Ӷ�ΪO(1),ֻ������һ���ַ������顣 
-֮���Խк������죬����Ϊ���ǿ��Խ��������ɫС���������״��������к�������ɺ������졣
+	一排木桶里分别装有红白蓝三色小球（分别用0,1,2表示），如何让所有的'0'出现在前面，所有的'1'在中间，所有的'2'在最后。
+要求：要求空间复杂度为O(1),只许遍历一遍字符串数组。 
+之所以叫荷兰国旗，是因为我们可以将红白蓝三色小球想象成条状物，有序排列后正好组成荷兰国旗。
 */
 #include <iostream>
 #include <cstdlib>
@@ -15,6 +15,7 @@ using namespace std;
 
 void Swap(int &a, int &b);
 void TheDutchFlag(int lib[], int n, int min, int max);
+void TheDutchFlag_2(int lib[], int n, int min, int max);
 
 int main()
 {
@@ -24,7 +25,7 @@ int main()
 	const int MAXSIZE = 30;
 	int lib[MAXSIZE] = {0};
 	
-	for (int i=0; i<MAXSIZE; i++) //�������3ɫС�� 
+	for (int i=0; i<MAXSIZE; i++) //随机生成3色小球 
 	{
 		lib[i] = color[rand() % COLORNUM];
 	}
@@ -58,12 +59,12 @@ void TheDutchFlag(int lib[], int n, int min, int max)
 	int left = 0;
 	int right = n - 1;
 	
-	while (lib[left] == min) //ȷ����߽��λ�� 
+	while (lib[left] == min) //确定左边界的位置 
 	{
 		left++;
 	}
 		
-	while (lib[right] == max) //ȷ���ұ߽��λ�� 
+	while (lib[right] == max) //确定右边界的位置 
 	{
 		right--;
 	}
@@ -71,18 +72,41 @@ void TheDutchFlag(int lib[], int n, int min, int max)
 	int i = left;
 	while (i <= right)
 	{
-		if (lib[i] == min) //����Сֵ�������������Ԫ�ؽ�����ͬʱ��߽����ƣ��α�Ҳ���� 
+		if (lib[i] == min) //是最小值，则与左区域的元素交换，同时左边界右移，游标也右移 
 		{
 			Swap(lib[i++], lib[left++]);
 		}
-		else if (lib[i] == max) //�����ֵ�������������Ԫ�ؽ�����ͬʱ�ұ߽����ƣ��α겻�� 
+		else if (lib[i] == max) //是最大值，则与右区域的元素交换，同时右边界左移，游标不动 
 		{
 			Swap(lib[i], lib[right--]);
 		}
-		else //�Ȳ������ֵҲ������Сֵ�����Ԫ�������м����򣬲����κν������α����� 
+		else //既不是最大值也不是最小值，则该元素属于中间区域，不做任何交换，游标右移 
 		{
 			i++;
 		}
 	}
 }
 
+void TheDutchFlag_2(int lib[], int n, int min, int max)
+{
+	int left = 0;
+	int right = n - 1;
+
+	while (lib[left] == min) //确定左边界的位置 
+		left++;
+	while (lib[right] == max) //确定右边界的位置 
+		right--;
+		
+	int i = left, j = right;
+	while (i <= right || j >= left) //尽可能将元素一次性交换到该去的地方 
+	{
+		while (i <= right && lib[i] != max) //不是最大值，游标右移 
+			i++;
+		if (i < right)
+			Swap(lib[i], lib[right--]);
+		while (j >= left && lib[j] != min) //不是最小值，游标左移 
+			j--;
+		if (j > left)
+			Swap(lib[j], lib[left++]);
+	}
+}
