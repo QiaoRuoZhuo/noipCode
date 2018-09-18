@@ -68,8 +68,8 @@ int Fun(int a[], int b[], int n, int key)//保证插入的纸牌数字大于1
 			b[i] += 1 + b[i+1];
 			for (int j=i+1; j<n-1; j++)//合并堆
 			{
-				a[j] = a[j+1];
-				b[j] = b[j+1];
+				a[j] = a[j+1]; //语句1 
+				b[j] = b[j+1]; //语句2 
 		 	} 
 		 	n--;
 		} 
@@ -80,17 +80,17 @@ int Fun(int a[], int b[], int n, int key)//保证插入的纸牌数字大于1
 	} 
 	else if (a[i+1] == key+1)//仅下靠
 	{
-		a[i+1] = key;
+		a[i+1] = key; //语句3
 		b[i+1] += 1;
 	} 
 	else //上下不靠 
 	{
 		for (int j=n; j>i+1; j--)//腾出位置，添加新堆 
 		{
-		    a[j] = a[j-1];
-			b[j] = b[j-1];
+		    a[j] = a[j-1]; //语句4 
+			b[j] = b[j-1]; //语句5
 	 	} 
-	 	a[i+1] = key;
+	 	a[i+1] = key;  
 	 	b[i+1] = 1;
 	 	n++;
 	}
