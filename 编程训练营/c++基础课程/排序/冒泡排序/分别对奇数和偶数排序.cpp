@@ -1,9 +1,9 @@
 /*
-	Name: ·Ö±ð¶ÔÆæÊýºÍÅ¼ÊýÅÅÐò 
+	Name: åˆ†åˆ«å¯¹å¥‡æ•°å’Œå¶æ•°æŽ’åº 
 	Copyright: 
 	Author: 
 	Date: 30-08-18 16:26
-	Description: ÓÐÒ»×éÕýÕûÊý£¬ÒªÇó·Ö±ð¶ÔÆæÊýºÍÅ¼Êý½øÐÐÉýÐòÅÅÐò£¬ÆäÖÐÆæÊýÔÚÇ°£¬Å¼ÊýÔÚºó¡£ 
+	Description: æœ‰ä¸€ç»„æ­£æ•´æ•°ï¼Œè¦æ±‚åˆ†åˆ«å¯¹å¥‡æ•°å’Œå¶æ•°è¿›è¡Œå‡åºæŽ’åºï¼Œå…¶ä¸­å¥‡æ•°åœ¨å‰ï¼Œå¶æ•°åœ¨åŽã€‚ 
 */
 #include<iostream>
 #include<ctime>
@@ -15,9 +15,9 @@ using namespace std;
 const int M = 30;
 int A[M];
 
-int OddNum(int n);//ÒªÇó°ÑÆæÊýºÍÅ¼Êý·Ö³ÉÁ½°ë£¬ÆäÖÐÆæÊýÔÚÇ°£¬Å¼ÊýÔÚºó£¬·µ»ØÆæÊýµÄÊýÁ¿
-void Fun(int low, int high);//ÒªÇó·Ö±ð¶ÔÆæÊýºÍÅ¼Êý½øÐÐÉýÐòÅÅÐò£¬ÆäÖÐÆæÊýÔÚÇ°£¬Å¼ÊýÔÚºó
-
+int OddNum(int n);//è¦æ±‚æŠŠå¥‡æ•°å’Œå¶æ•°åˆ†æˆä¸¤åŠï¼Œå…¶ä¸­å¥‡æ•°åœ¨å‰ï¼Œå¶æ•°åœ¨åŽï¼Œè¿”å›žå¥‡æ•°çš„æ•°é‡
+void Fun(int low, int high);//è¦æ±‚åˆ†åˆ«å¯¹å¥‡æ•°å’Œå¶æ•°è¿›è¡Œå‡åºæŽ’åºï¼Œå…¶ä¸­å¥‡æ•°åœ¨å‰ï¼Œå¶æ•°åœ¨åŽ
+void Fun2(int low, int high);//è¦æ±‚åˆ†åˆ«å¯¹å¥‡æ•°å’Œå¶æ•°è¿›è¡Œå‡åºæŽ’åºï¼Œå…¶ä¸­å¥‡æ•°åœ¨å‰ï¼Œå¶æ•°åœ¨åŽ
 int main() 
 {
 	int n  = M;
@@ -27,10 +27,11 @@ int main()
 		cout << A[i] << " ";
 	cout << endl;
 	
-	int len = OddNum(n);//ÒªÇó°ÑÆæÊýºÍÅ¼Êý·Ö³ÉÁ½°ë£¬ÆäÖÐÆæÊýÔÚÇ°£¬Å¼ÊýÔÚºó£¬·µ»ØÆæÊýµÄÊýÁ¿
-	Fun(0, len-1);
-	Fun(len, n);
+//	int len = OddNum(n);//è¦æ±‚æŠŠå¥‡æ•°å’Œå¶æ•°åˆ†æˆä¸¤åŠï¼Œå…¶ä¸­å¥‡æ•°åœ¨å‰ï¼Œå¶æ•°åœ¨åŽï¼Œè¿”å›žå¥‡æ•°çš„æ•°é‡
+//	Fun(0, len-1);
+//	Fun(len, n);
 	
+	Fun2(0, n-1);
 	for (int i=0; i<n; i++)
 		cout << A[i] << " ";
 	cout << endl;
@@ -38,15 +39,15 @@ int main()
 	return 0;	
 } 
 
-void Fun(int low, int high)//ÒªÇó·Ö±ð¶ÔÆæÊýºÍÅ¼Êý½øÐÐÉýÐòÅÅÐò£¬ÆäÖÐÆæÊýÔÚÇ°£¬Å¼ÊýÔÚºó
+void Fun(int low, int high)//è¦æ±‚åˆ†åˆ«å¯¹å¥‡æ•°å’Œå¶æ•°è¿›è¡Œå‡åºæŽ’åºï¼Œå…¶ä¸­å¥‡æ•°åœ¨å‰ï¼Œå¶æ•°åœ¨åŽ
 {
-    int lastSwapPos;//×îºóÒ»´Î·¢Éú½»»»²Ù×÷µÄÎ»ÖÃ
-    int temp; //ÓÃÀ´½»»»Êý×éÔªËØÖµµÄÁÙÊ±±äÁ¿
+    int lastSwapPos;//æœ€åŽä¸€æ¬¡å‘ç”Ÿäº¤æ¢æ“ä½œçš„ä½ç½®
+    int temp; //ç”¨æ¥äº¤æ¢æ•°ç»„å…ƒç´ å€¼çš„ä¸´æ—¶å˜é‡
     int i;
 
     while (low < high)
     {
-        lastSwapPos = low;//¼ÙÉè×îºóÒ»´Î½»»»Î»ÖÃÎª×ó±ß½ç£¨¼´ÎÞ½»»»£© 
+        lastSwapPos = low;//å‡è®¾æœ€åŽä¸€æ¬¡äº¤æ¢ä½ç½®ä¸ºå·¦è¾¹ç•Œï¼ˆå³æ— äº¤æ¢ï¼‰ 
         for (i=low; i<high; i++)
         {
             if (A[i] > A[i+1])
@@ -54,11 +55,11 @@ void Fun(int low, int high)//ÒªÇó·Ö±ð¶ÔÆæÊýºÍÅ¼Êý½øÐÐÉýÐòÅÅÐò£¬ÆäÖÐÆæÊýÔÚÇ°£¬Å¼Ê
                 temp = A[i];
                 A[i] =A[i+1];
                 A[i+1] =temp;
-                lastSwapPos = i;//¸Ã´¦·¢ÉúÁË½»»»²Ù×÷£¬¸üÐÂÐèÒªÅÅÐòµÄ³ÉÔ±·¶Î§ 
+                lastSwapPos = i;//è¯¥å¤„å‘ç”Ÿäº†äº¤æ¢æ“ä½œï¼Œæ›´æ–°éœ€è¦æŽ’åºçš„æˆå‘˜èŒƒå›´ 
             }
         }
 
-        high = lastSwapPos;//ÉèÖÃÐÂµÄÓÒ±ß½ç
+        high = lastSwapPos;//è®¾ç½®æ–°çš„å³è¾¹ç•Œ
         for (i=high; i>low; i--)
         {
             if (A[i] < A[i-1])
@@ -66,14 +67,14 @@ void Fun(int low, int high)//ÒªÇó·Ö±ð¶ÔÆæÊýºÍÅ¼Êý½øÐÐÉýÐòÅÅÐò£¬ÆäÖÐÆæÊýÔÚÇ°£¬Å¼Ê
                 temp = A[i];
                 A[i] = A[i-1];
                 A[i-1] = temp;
-                lastSwapPos = i;//¸Ã´¦·¢ÉúÁË½»»»²Ù×÷£¬¸üÐÂÐèÒªÅÅÐòµÄ³ÉÔ±·¶Î§ 
+                lastSwapPos = i;//è¯¥å¤„å‘ç”Ÿäº†äº¤æ¢æ“ä½œï¼Œæ›´æ–°éœ€è¦æŽ’åºçš„æˆå‘˜èŒƒå›´ 
             }
         }
-        low = lastSwapPos;//ÉèÖÃÐÂµÄ×ó±ß½ç 
+        low = lastSwapPos;//è®¾ç½®æ–°çš„å·¦è¾¹ç•Œ 
     }
 }
 
-int OddNum(int n)//ÒªÇó°ÑÆæÊýºÍÅ¼Êý·Ö³ÉÁ½°ë£¬ÆäÖÐÆæÊýÔÚÇ°£¬Å¼ÊýÔÚºó£¬·µ»ØÆæÊýµÄÊýÁ¿
+int OddNum(int n)//è¦æ±‚æŠŠå¥‡æ•°å’Œå¶æ•°åˆ†æˆä¸¤åŠï¼Œå…¶ä¸­å¥‡æ•°åœ¨å‰ï¼Œå¶æ•°åœ¨åŽï¼Œè¿”å›žå¥‡æ•°çš„æ•°é‡
 {
     int i = 0, j = n - 1;
 	
@@ -91,4 +92,16 @@ int OddNum(int n)//ÒªÇó°ÑÆæÊýºÍÅ¼Êý·Ö³ÉÁ½°ë£¬ÆäÖÐÆæÊýÔÚÇ°£¬Å¼ÊýÔÚºó£¬·µ»ØÆæÊýµÄÊ
     return j+1;
 }
 
-
+void Fun2(int low, int high)//è¦æ±‚åˆ†åˆ«å¯¹å¥‡æ•°å’Œå¶æ•°è¿›è¡Œå‡åºæŽ’åºï¼Œå…¶ä¸­å¥‡æ•°åœ¨å‰ï¼Œå¶æ•°åœ¨åŽ
+{
+    for (int i=low; i<high; i++)
+    {
+        for (int j=high; j>i; j--)
+        {
+            if ((A[j]%2 == A[j-1]%2 && A[j] < A[j-1]) || A[j]%2 > A[j-1]%2)
+            {
+                swap(A[j], A[j-1]);
+            }
+        }
+    }
+}
